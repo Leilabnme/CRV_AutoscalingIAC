@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: node-redis
+  labels:
+    app: node-redis
+spec:
+  replicas: 3  # Augmenté pour la tolérance aux pannes
+  selector:
+    matchLabels:
+      app: node-redis
+  template:
+    metadata:
+      labels:
+        app: node-redis
+    spec:
+      containers:
+        - name: node-redis
+          image: node-redis-server:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: PORT
+              value: '8080'
+            - name: REDIS_URL
+              value: redis://redis-master:6379  # Utilisation du nom du service Redis master
+            - name: REDIS_REPLICAS_URL
+              value: redis://redis-replica:6379  # Utilisation du nom du service Redis replica
+

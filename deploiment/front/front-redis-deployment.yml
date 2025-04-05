@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-react
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis-react
+  template:
+    metadata:
+      labels:
+        app: redis-react
+    spec:
+      containers:
+        - name: redis-react
+          image: node-redis-front
+          imagePullPolicy: Never  
+          ports:
+            - containerPort: 8080
+          env:
+            - name: REACT_APP_API_URL
+              value: "http://node-redis-project:8080"
+
