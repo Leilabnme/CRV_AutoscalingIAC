@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
         - name: node-redis
-          image: node-redis-server:latest
-          imagePullPolicy: Never
+          image: yasmine77/back
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:

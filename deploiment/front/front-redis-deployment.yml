@@ -14,11 +14,9 @@ spec:
     spec:
       containers:
         - name: redis-react
-          image: node-redis-front
-          imagePullPolicy: Never  
+          image: yasmine77/front
+          imagePullPolicy: Always  
           ports:
             - containerPort: 8080
-          env:
-            - name: REACT_APP_API_URL
-              value: "http://node-redis-project:8080"
+         
 

@@ -1,5 +1,4 @@
 version: '3.8'
-
 services:
   # Service Redis
   redis:
@@ -10,13 +9,11 @@ services:
     networks:
       - redis-network
     restart: always
-
-  # Service serveur Node.js
   server:
-    image: node-redis-server:latest  # Remplacez par le nom de votre image Node.js
+    image: node-redis-server:latest  
     container_name: node-server
     ports:
-      - "3000:3000"  # Exposer le port de l'application Node.js
+      - "3000:3000"  
     environment:
       REDIS_URL: "redis://redis:6379"  # URL de connexion à Redis
     depends_on:
